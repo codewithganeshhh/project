@@ -1,0 +1,484 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Zaheer Ansari IT Training Institute | Premier Tech Education</title>
+  <meta name="description" content="Learn about Zaheer Ansari IT Training Institute's mission, values, expert mentors, and 10+ years of excellence in transforming students into tech leaders.">
+  <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+  
+  <!-- Bootstrap 5 & Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Modern Tech Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/homepage-pro.css' %}">
+</head>
+<body>
+
+  <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
+  <div class="top-notice-bar">
+    <div class="container-fluid px-4">
+      <div class="notice-inner">
+        <div class="notice-left">
+          <span class="live-pulse-badge">
+            <span class="pulse-dot"></span> ADMISSIONS 2026
+          </span>
+          <span class="notice-text">
+            <strong>Admissions Open for Summer/Fall Cohorts!</strong> Limited seats with up to 30% Merit Scholarships & 100% Placement Assistance.
+          </span>
+        </div>
+        <div class="notice-right">
+          <a href="tel:+919876543210" class="notice-link">
+            <i class="fas fa-phone-alt"></i> +91 98765 43210
+          </a>
+          <a href="mailto:info@zaheerit.com" class="notice-link">
+            <i class="fas fa-envelope"></i> info@zaheerit.com
+          </a>
+          <a href="{% url 'contact' %}" class="notice-cta-pill">
+            <i class="fas fa-bolt me-1"></i> Book Free Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark main-navbar">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <div class="brand-wrapper">
+          <img src="https://ui-avatars.com/api/?name=ZA&size=48&background=ffc107&color=0a0a2e&bold=true&font-size=0.5" alt="Zaheer Ansari IT" class="brand-logo-img">
+          <div class="brand-text">
+            <span class="brand-name">Zaheer Ansari IT</span>
+            <span class="brand-tagline">TRAINING INSTITUTE</span>
+          </div>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">COURSES</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'why_zaheer' %}">WHY ZAHEER IT</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#career-roadmap">ROADMAP</a></li>
+          <li class="nav-item"><a class="nav-link active" href="{% url 'about' %}">ABOUT</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT</a></li>
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">PROFILE</a></li>
+            <li class="nav-item"><a class="nav-link btn-logout" href="{% url 'logout' %}">LOGOUT</a></li>
+          {% else %}
+            <li class="nav-item ms-lg-2"><a class="nav-link btn-login" href="{% url 'login' %}"><i class="fas fa-user-graduate me-1"></i> STUDENT PORTAL</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% if messages %}
+  <div class="container django-messages mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <section class="page-header">
+    <div class="container position-relative">
+      <div class="page-header-content text-center">
+        <span class="page-header-badge"><i class="fas fa-award text-warning"></i> 10+ Years of Excellence</span>
+        <h1>About <span class="text-gradient-gold">Our Institute</span></h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">About Us</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHO WE ARE ==================== -->
+  <section class="about-intro-section">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="about-intro-img-wrapper">
+            <img src="{% static 'images/hero2.jpg' %}" alt="About Zaheer Ansari IT" class="about-intro-img">
+            <div class="about-intro-badge">
+              <i class="fas fa-award"></i>
+              <div>
+                <span class="about-intro-badge-number">10+</span>
+                <span class="about-intro-badge-label">Years of Excellence</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="about-intro-content">
+            <span class="section-tag-badge bg-primary-subtle text-primary border-primary">
+              <i class="fas fa-building"></i> Who We Are
+            </span>
+            <h2 class="welcome-title text-start text-dark">
+              Empowering Careers Through <span class="highlight">Practical IT Excellence</span>
+            </h2>
+            <p class="about-intro-text text-muted mb-3">
+              Zaheer Ansari IT Training Institute is a premier technology training organization committed to bridging the gap between academic education and modern industry requirements. Founded with a vision to build job-ready tech professionals, we have trained more than 15,000+ students and working professionals.
+            </p>
+            <p class="about-intro-text text-muted mb-4">
+              Our outcome-based pedagogy, hands-on production capstones, and dedicated placement cell ensure every learner gains the practical skills and confidence demanded by top product startups and multinational tech enterprises.
+            </p>
+            <div class="about-intro-features">
+              <div class="about-intro-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Industry-Aligned 2026 Curriculum</span>
+              </div>
+              <div class="about-intro-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>Silicon Valley Tech Leads</span>
+              </div>
+              <div class="about-intro-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>100% Hands-On Production Labs</span>
+              </div>
+              <div class="about-intro-feature">
+                <i class="fas fa-check-circle"></i>
+                <span>100% Placement Assistance</span>
+              </div>
+            </div>
+            <a href="{% url 'contact' %}" class="btn-pro-primary mt-2">
+              <span>Talk to Career Counselor</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MISSION / VISION / VALUES ==================== -->
+  <section class="mvv-section">
+    <div class="container">
+      <div class="section-header text-center mb-5">
+        <span class="section-tag-badge bg-warning-subtle text-warning border-warning">
+          <i class="fas fa-bullseye"></i> Our Guiding Principles
+        </span>
+        <h2 class="welcome-title text-dark">Mission, Vision & <span class="highlight">Core Values</span></h2>
+        <p class="welcome-text">The foundational pillars that guide our teaching philosophy and student success.</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="mvv-card">
+            <div class="mvv-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h4>Our Mission</h4>
+            <p>To deliver uncompromising, industry-relevant IT education that empowers students with practical capabilities, architectural resilience, and the self-confidence to excel in global engineering roles.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="mvv-card">
+            <div class="mvv-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h4>Our Vision</h4>
+            <p>To be India's most trusted and outcome-driven IT training academy, universally recognized for producing top 1% engineering talent that drives real transformation in the tech ecosystem.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="mvv-card">
+            <div class="mvv-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <h4>Our Values</h4>
+            <p>Practical rigor, mentorship integrity, student obsession, and continuous innovation. We judge our success exclusively by the career triumphs and job offers earned by our alumni.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STATS COUNTER ==================== -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-lg-3 col-md-6">
+          <div class="stat-counter-card">
+            <i class="fas fa-user-graduate"></i>
+            <h3><span class="metric-number" data-target="15000">15000</span>+</h3>
+            <p>Students Trained</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="stat-counter-card">
+            <i class="fas fa-book-open"></i>
+            <h3><span class="metric-number" data-target="50">50</span>+</h3>
+            <p>Advanced Modules</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="stat-counter-card">
+            <i class="fas fa-chart-line"></i>
+            <h3><span class="metric-number" data-target="96.8">96.8</span>%</h3>
+            <p>Verified Placement</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="stat-counter-card">
+            <i class="fas fa-trophy"></i>
+            <h3>₹<span class="metric-number" data-target="18.5">18.5</span> LPA</h3>
+            <p>Highest Package</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MEET OUR EXPERT MENTORS ==================== -->
+  <section class="team-section">
+    <div class="container">
+      <div class="section-header text-center mb-5">
+        <span class="section-tag-badge bg-info-subtle text-info border-info">
+          <i class="fas fa-users"></i> Elite Faculty
+        </span>
+        <h2 class="welcome-title text-dark">Meet Our <span class="highlight">Tech Mentors</span></h2>
+        <p class="welcome-text">Passionate engineers, architects, and industry veterans dedicated to your growth.</p>
+      </div>
+
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-3 col-md-6">
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img src="{% static 'images/gallery1.jpg' %}" alt="Zaheer Ansari" class="team-img">
+              <div class="team-social">
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:info@zaheerit.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <h5>Zaheer Ansari</h5>
+            <span>Founder & Managing Director</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img src="{% static 'images/gallery2.png' %}" alt="Ayesha Khan" class="team-img">
+              <div class="team-social">
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:info@zaheerit.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <h5>Ayesha Khan</h5>
+            <span>Data Science & AI Lead</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img src="{% static 'images/gallery3.jpg' %}" alt="Rajesh Verma" class="team-img">
+              <div class="team-social">
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:info@zaheerit.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <h5>Rajesh Verma</h5>
+            <span>Cloud & DevOps Architect</span>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="team-card">
+            <div class="team-img-wrapper">
+              <img src="{% static 'images/gallery4.jpg' %}" alt="Sneha Patil" class="team-img">
+              <div class="team-social">
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:info@zaheerit.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+            <h5>Sneha Patil</h5>
+            <span>Cybersecurity Specialist</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA SECTION ==================== -->
+  <section class="cta-banner-section py-5">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+          <span class="hero-pill-badge mb-3">
+            <i class="fas fa-rocket text-warning me-1"></i> Admissions Open 2026
+          </span>
+          <h2 class="display-5 fw-bold text-white mb-3">
+            Ready to Accelerate Your <span class="text-gradient-gold">Tech Career?</span>
+          </h2>
+          <p class="lead text-white-50 mb-4">
+            Join thousands of successful graduates who secured placements in top MNCs with Zaheer Ansari IT Training Institute.
+          </p>
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="{% url 'signup' %}" class="btn-pro-primary">
+              <span>Enroll Now</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="{% url 'courses' %}" class="btn-pro-outline">
+              <i class="fas fa-book-open"></i>
+              <span>Browse All Programs</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-brand">
+              <div class="footer-brand-wrapper">
+                <img src="https://ui-avatars.com/api/?name=ZA&size=48&background=ffc107&color=0a0a2e&bold=true&font-size=0.5" alt="Logo" class="footer-logo-img">
+                <span>Zaheer Ansari IT</span>
+              </div>
+              <p class="footer-about">
+                India's premier practical IT academy empowering students and professionals with modern tech stacks, 1-on-1 mentorship, and 100% placement assistance.
+              </p>
+              <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="{% url 'home' %}"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Courses</a></li>
+              <li><a href="{% url 'why_zaheer' %}"><i class="fas fa-chevron-right"></i> Why Zaheer IT</a></li>
+              <li><a href="{% url 'about' %}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+              <li><a href="{% url 'contact' %}"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-title">Top Programs</h5>
+            <ul class="footer-links">
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Full Stack Web Dev</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Data Science & AI</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Cloud & DevOps</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Cybersecurity</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Mobile App Development</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-title">Headquarters</h5>
+            <div class="footer-contact">
+              <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>123 IT Park, Silicon Valley,<br>Bangalore - 560001, India</span></div>
+              <div class="contact-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+919876543210">+91 98765 43210</a></span></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:info@zaheerit.com">info@zaheerit.com</a></span></div>
+              <div class="contact-item"><i class="fas fa-clock"></i><span>Mon-Sat: 9:00 AM - 7:00 PM</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0">&copy; 2026 <span class="fw-bold">Zaheer Ansari IT Training Institute</span>. ISO 9001:2015 Certified. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <ul class="footer-bottom-links">
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a></li>
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Privacy Policy Modal -->
+  <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #0a0a2e; color: #fff;">
+          <h5 class="modal-title" id="privacyModalLabel"><i class="fas fa-shield-alt me-2"></i>Privacy Policy</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+          <h5>1. Information We Collect</h5>
+          <p>We collect personal information that you voluntarily provide when you register, enroll, or contact us.</p>
+          <h5>2. How We Use Your Information</h5>
+          <p>We use the information to process enrollments, communicate updates, and coordinate placement opportunities.</p>
+          <h5>3. Data Security</h5>
+          <p>We implement industry-standard encryption and security measures to protect your personal information.</p>
+          <p class="mt-3"><strong>Last Updated:</strong> January 2026</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #0a0a2e; color: #fff;">
+          <h5 class="modal-title" id="termsModalLabel"><i class="fas fa-file-contract me-2"></i>Terms of Service</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+          <h5>1. Acceptance of Terms</h5>
+          <p>By using our website and services, you agree to these Terms of Service.</p>
+          <h5>2. Enrollment and Code of Conduct</h5>
+          <p>All enrollments are subject to batch availability and adherence to student code of conduct.</p>
+          <h5>3. Intellectual Property</h5>
+          <p>All course materials and lab challenges are intellectual property of Zaheer Ansari IT Training Institute.</p>
+          <p class="mt-3"><strong>Last Updated:</strong> January 2026</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Speed Dial & Back to Top -->
+  <div class="floating-actions-bar">
+    <a href="https://wa.me/919876543210?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20courses%20at%20Zaheer%20Ansari%20IT%20Institute" target="_blank" rel="noopener noreferrer" class="float-action-btn btn-whatsapp-float" title="Chat on WhatsApp" aria-label="WhatsApp Chat">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <button id="backToTopBtn" class="float-action-btn btn-back-top" title="Back to Top" aria-label="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- Core JavaScript Bundles -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/homepage-pro.js' %}"></script>
+</body>
+</html>

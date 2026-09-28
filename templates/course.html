@@ -1,0 +1,618 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Courses - Zaheer Ansari IT Training Institute | Job-Ready Programs</title>
+  <meta name="description" content="Explore industry-leading IT courses in Full Stack Web Development, Data Science, AI, Cloud Computing, DevOps, and Cybersecurity with 100% placement support.">
+  <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+  
+  <!-- Bootstrap 5 & Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Modern Tech Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/homepage-pro.css' %}">
+</head>
+<body data-authenticated="{% if user.is_authenticated %}true{% else %}false{% endif %}"
+      data-user-name="{{ user.first_name|default:'' }}"
+      data-user-email="{{ user.email|default:'' }}">
+
+  <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
+  <div class="top-notice-bar">
+    <div class="container-fluid px-4">
+      <div class="notice-inner">
+        <div class="notice-left">
+          <span class="live-pulse-badge">
+            <span class="pulse-dot"></span> ADMISSIONS 2026
+          </span>
+          <span class="notice-text">
+            <strong>Admissions Open for Summer/Fall Cohorts!</strong> Limited seats with up to 30% Merit Scholarships & 100% Placement Assistance.
+          </span>
+        </div>
+        <div class="notice-right">
+          <a href="tel:+919876543210" class="notice-link">
+            <i class="fas fa-phone-alt"></i> +91 98765 43210
+          </a>
+          <a href="mailto:info@zaheerit.com" class="notice-link">
+            <i class="fas fa-envelope"></i> info@zaheerit.com
+          </a>
+          <a href="#courseGrid" class="notice-cta-pill">
+            <i class="fas fa-bolt me-1"></i> View Programs
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark main-navbar">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <div class="brand-wrapper">
+          <img src="https://ui-avatars.com/api/?name=ZA&size=48&background=ffc107&color=0a0a2e&bold=true&font-size=0.5" alt="Zaheer Ansari IT" class="brand-logo-img">
+          <div class="brand-text">
+            <span class="brand-name">Zaheer Ansari IT</span>
+            <span class="brand-tagline">TRAINING INSTITUTE</span>
+          </div>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">HOME</a></li>
+          <li class="nav-item"><a class="nav-link active" href="{% url 'courses' %}">COURSES</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'why_zaheer' %}">WHY ZAHEER IT</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#career-roadmap">ROADMAP</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">ABOUT</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT</a></li>
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">PROFILE</a></li>
+            <li class="nav-item"><a class="nav-link btn-logout" href="{% url 'logout' %}">LOGOUT</a></li>
+          {% else %}
+            <li class="nav-item ms-lg-2"><a class="nav-link btn-login" href="{% url 'login' %}"><i class="fas fa-user-graduate me-1"></i> STUDENT PORTAL</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% if messages %}
+  <div class="container django-messages mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <section class="page-header">
+    <div class="container position-relative">
+      <div class="page-header-content text-center">
+        <span class="page-header-badge"><i class="fas fa-graduation-cap text-warning"></i> Industry 4.0 Programs</span>
+        <h1>Explore Our <span class="text-gradient-gold">IT Courses</span></h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Courses</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FILTER BUTTONS ==================== -->
+  <section class="course-filter-section">
+    <div class="container">
+      <div class="course-filter-wrapper">
+        <button class="filter-btn active" data-filter="all"><i class="fas fa-th-large"></i> All Courses</button>
+        <button class="filter-btn" data-filter="web"><i class="fas fa-code"></i> Web Development</button>
+        <button class="filter-btn" data-filter="data"><i class="fas fa-brain"></i> Data Science & AI</button>
+        <button class="filter-btn" data-filter="cloud"><i class="fas fa-cloud"></i> Cloud & DevOps</button>
+        <button class="filter-btn" data-filter="security"><i class="fas fa-shield-alt"></i> Cybersecurity</button>
+        <button class="filter-btn" data-filter="mobile"><i class="fas fa-mobile-alt"></i> Mobile App</button>
+        <button class="filter-btn" data-filter="marketing"><i class="fas fa-chart-line"></i> Digital Marketing</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COURSES GRID ==================== -->
+  <section class="courses-grid-section">
+    <div class="container">
+      <div class="row g-4" id="courseGrid">
+
+        <!-- Course 1 -->
+        <div class="col-lg-4 col-md-6 course-item" data-category="web">
+          <div class="course-card-pro">
+            <div class="course-card-img">
+              <img src="{% static 'images/hero1.jpg' %}" alt="Full Stack Web Development">
+              <span class="course-badge">Bestseller</span>
+              <span class="course-level">Beginner to Pro</span>
+            </div>
+            <div class="course-card-body">
+              <div class="course-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>4.9 (320 Reviews)</span>
+              </div>
+              <h5 class="course-title">Full Stack Web Development</h5>
+              <p class="course-desc">Master HTML5, CSS3, JavaScript, React 19, Node.js, Express, MongoDB, and AWS cloud deployment with 8+ real projects.</p>
+              <div class="course-meta">
+                <span class="course-meta-item"><i class="fas fa-clock"></i> 6 Months</span>
+                <span class="course-meta-item"><i class="fas fa-briefcase"></i> 100% Placement</span>
+              </div>
+              <div class="course-card-footer">
+                <div class="course-price">
+                  <span class="price-current">₹24,999</span>
+                  <span class="price-original">₹39,999</span>
+                </div>
+                <button type="button" class="btn-enroll-course enroll-btn" data-course="Full Stack Web Development" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                  <span>Enroll Now</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="col-lg-4 col-md-6 course-item" data-category="data">
+          <div class="course-card-pro">
+            <div class="course-card-img">
+              <img src="{% static 'images/hero2.jpg' %}" alt="Data Science & AI">
+              <span class="course-badge">Trending</span>
+              <span class="course-level">Intermediate</span>
+            </div>
+            <div class="course-card-body">
+              <div class="course-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>4.9 (280 Reviews)</span>
+              </div>
+              <h5 class="course-title">Data Science & Artificial Intelligence</h5>
+              <p class="course-desc">Learn Python, Pandas, NumPy, Scikit-Learn, Deep Learning, Generative AI, and LLM orchestration with production datasets.</p>
+              <div class="course-meta">
+                <span class="course-meta-item"><i class="fas fa-clock"></i> 8 Months</span>
+                <span class="course-meta-item"><i class="fas fa-briefcase"></i> 100% Placement</span>
+              </div>
+              <div class="course-card-footer">
+                <div class="course-price">
+                  <span class="price-current">₹34,999</span>
+                  <span class="price-original">₹54,999</span>
+                </div>
+                <button type="button" class="btn-enroll-course enroll-btn" data-course="Data Science & Artificial Intelligence" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                  <span>Enroll Now</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="col-lg-4 col-md-6 course-item" data-category="cloud">
+          <div class="course-card-pro">
+            <div class="course-card-img">
+              <img src="{% static 'images/hero3.jpg' %}" alt="Cloud & DevOps">
+              <span class="course-badge">High Demand</span>
+              <span class="course-level">Advanced</span>
+            </div>
+            <div class="course-card-body">
+              <div class="course-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>4.8 (210 Reviews)</span>
+              </div>
+              <h5 class="course-title">Cloud Computing & DevOps Architect</h5>
+              <p class="course-desc">Master AWS, Docker, Kubernetes, Terraform, Jenkins, GitOps, Prometheus monitoring, and enterprise cloud architecture.</p>
+              <div class="course-meta">
+                <span class="course-meta-item"><i class="fas fa-clock"></i> 5 Months</span>
+                <span class="course-meta-item"><i class="fas fa-briefcase"></i> 100% Placement</span>
+              </div>
+              <div class="course-card-footer">
+                <div class="course-price">
+                  <span class="price-current">₹29,999</span>
+                  <span class="price-original">₹44,999</span>
+                </div>
+                <button type="button" class="btn-enroll-course enroll-btn" data-course="Cloud Computing & DevOps" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                  <span>Enroll Now</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="col-lg-4 col-md-6 course-item" data-category="security">
+          <div class="course-card-pro">
+            <div class="course-card-img">
+              <img src="{% static 'images/gallery1.jpg' %}" alt="Cybersecurity">
+              <span class="course-badge">Elite Track</span>
+              <span class="course-level">Intermediate</span>
+            </div>
+            <div class="course-card-body">
+              <div class="course-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>4.9 (150 Reviews)</span>
+              </div>
+              <h5 class="course-title">Cybersecurity & Ethical Hacking</h5>
+              <p class="course-desc">Hands-on network security, penetration testing, Kali Linux tools, vulnerability analysis, cryptography, and SOC monitoring.</p>
+              <div class="course-meta">
+                <span class="course-meta-item"><i class="fas fa-clock"></i> 5 Months</span>
+                <span class="course-meta-item"><i class="fas fa-briefcase"></i> 100% Placement</span>
+              </div>
+              <div class="course-card-footer">
+                <div class="course-price">
+                  <span class="price-current">₹27,999</span>
+                  <span class="price-original">₹42,999</span>
+                </div>
+                <button type="button" class="btn-enroll-course enroll-btn" data-course="Cybersecurity & Ethical Hacking" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                  <span>Enroll Now</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="col-lg-4 col-md-6 course-item" data-category="mobile">
+          <div class="course-card-pro">
+            <div class="course-card-img">
+              <img src="{% static 'images/gallery2.png' %}" alt="Mobile App Development">
+              <span class="course-badge">Popular</span>
+              <span class="course-level">Beginner to Pro</span>
+            </div>
+            <div class="course-card-body">
+              <div class="course-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                <span>4.8 (190 Reviews)</span>
+              </div>
+              <h5 class="course-title">Cross-Platform Mobile App Dev</h5>
+              <p class="course-desc">Build performant native apps using React Native and Flutter with real Firebase backends, payment gateways, and app store deployment.</p>
+              <div class="course-meta">
+                <span class="course-meta-item"><i class="fas fa-clock"></i> 5 Months</span>
+                <span class="course-meta-item"><i class="fas fa-briefcase"></i> 100% Placement</span>
+              </div>
+              <div class="course-card-footer">
+                <div class="course-price">
+                  <span class="price-current">₹25,999</span>
+                  <span class="price-original">₹39,999</span>
+                </div>
+                <button type="button" class="btn-enroll-course enroll-btn" data-course="Mobile App Development" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                  <span>Enroll Now</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 6 -->
+        <div class="col-lg-4 col-md-6 course-item" data-category="marketing">
+          <div class="course-card-pro">
+            <div class="course-card-img">
+              <img src="{% static 'images/gallery3.jpg' %}" alt="Digital Marketing">
+              <span class="course-badge">High ROI</span>
+              <span class="course-level">All Levels</span>
+            </div>
+            <div class="course-card-body">
+              <div class="course-rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <span>4.9 (240 Reviews)</span>
+              </div>
+              <h5 class="course-title">Digital Marketing & Growth Hacker</h5>
+              <p class="course-desc">Master Technical SEO, SEM, Performance Ads, Meta Campaign Architectures, Google Analytics 4, and AI-driven growth funnels.</p>
+              <div class="course-meta">
+                <span class="course-meta-item"><i class="fas fa-clock"></i> 3 Months</span>
+                <span class="course-meta-item"><i class="fas fa-briefcase"></i> 100% Placement</span>
+              </div>
+              <div class="course-card-footer">
+                <div class="course-price">
+                  <span class="price-current">₹19,999</span>
+                  <span class="price-original">₹29,999</span>
+                </div>
+                <button type="button" class="btn-enroll-course enroll-btn" data-course="Digital Marketing Masterclass" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                  <span>Enroll Now</span>
+                  <i class="fas fa-arrow-right"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="noCoursesMsg" class="no-courses-msg text-center py-5" style="display:none;">
+        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+        <h4>No courses found</h4>
+        <p class="text-muted">Try selecting a different domain category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ENROLLMENT MODAL ==================== -->
+  <div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #0a0a2e; color: #ffffff; border-bottom: 2px solid #ffc107;">
+          <div>
+            <h5 class="modal-title fw-bold" id="enrollModalLabel"><i class="fas fa-graduation-cap text-warning me-2"></i>Course Enrollment</h5>
+            <p class="small text-white-50 mb-0">Fill in your information to enroll or request a syllabus callback</p>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <form id="modalEnrollForm" method="post" action="{% url 'enroll_course' %}" data-url="{% url 'enroll_course' %}">
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-12">
+                <div class="form-group">
+                  <i class="fas fa-book form-icon"></i>
+                  <input type="text" name="course" class="form-control form-control-lg bg-light fw-bold" id="modalCourseName" readonly>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <i class="fas fa-user form-icon"></i>
+                  <input type="text" name="name" class="form-control form-control-lg" id="modalName" placeholder="Full Name" value="{{ user.first_name|default:'' }}" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <i class="fas fa-envelope form-icon"></i>
+                  <input type="email" name="email" class="form-control form-control-lg" id="modalEmail" placeholder="Email Address" value="{{ user.email|default:'' }}" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <i class="fas fa-phone form-icon"></i>
+                  <input type="tel" name="phone" class="form-control form-control-lg" id="modalPhone" placeholder="Mobile Number (+91)" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <i class="fas fa-calendar-alt form-icon"></i>
+                  <select name="batch" class="form-select form-select-lg" id="modalBatch" required>
+                    <option value="">Preferred Batch Schedule</option>
+                    <option>Weekday Morning (9 AM - 12 PM)</option>
+                    <option>Weekday Evening (6 PM - 9 PM)</option>
+                    <option>Weekend Intensive (Sat & Sun)</option>
+                    <option>Interactive Live Online Batch</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group">
+                  <i class="fas fa-comment form-icon"></i>
+                  <textarea name="message" class="form-control" id="modalMessage" rows="2" placeholder="Any queries or prior background... (optional)"></textarea>
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-enroll btn-lg w-100">
+                  <i class="fas fa-paper-plane me-2"></i> Confirm Enrollment & Get Syllabus
+                  <span class="btn-shimmer"></span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== WHY LEARN WITH US ==================== -->
+  <section class="why-courses-section py-5 bg-white">
+    <div class="container">
+      <div class="section-header text-center mb-5">
+        <span class="section-tag-badge bg-warning-subtle text-warning border-warning">
+          <i class="fas fa-gem"></i> Core Advantages
+        </span>
+        <h2 class="welcome-title text-dark">Why Learn With <span class="highlight">Zaheer Ansari IT?</span></h2>
+        <p class="welcome-text">Every course is bundled with career acceleration benefits designed for real hiring success.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="why-card">
+            <div class="why-card-icon"><i class="fas fa-certificate"></i></div>
+            <h5>ISO 9001 Certification</h5>
+            <p>Accredited global certificate with QR verification for LinkedIn & CV recognition.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="why-card">
+            <div class="why-card-icon"><i class="fas fa-project-diagram"></i></div>
+            <h5>8+ Production Capstones</h5>
+            <p>Build enterprise repositories and microservices that impress hiring panels.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="why-card">
+            <div class="why-card-icon"><i class="fas fa-user-tie"></i></div>
+            <h5>1-on-1 Code Reviews</h5>
+            <p>Personal code critique from working software architects and senior engineers.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="why-card">
+            <div class="why-card-icon"><i class="fas fa-handshake"></i></div>
+            <h5>100% Placement Drives</h5>
+            <p>Direct recruitment tie-ups with 250+ MNCs, product companies & unicorn startups.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA SECTION ==================== -->
+  <section class="cta-banner-section py-5">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+          <span class="hero-pill-badge mb-3">
+            <i class="fas fa-compass text-warning me-1"></i> Career Advisory
+          </span>
+          <h2 class="display-5 fw-bold text-white mb-3">
+            Unsure Which Track Fits Your <span class="text-gradient-gold">Background?</span>
+          </h2>
+          <p class="lead text-white-50 mb-4">
+            Book a complimentary 1-on-1 technical evaluation call with our senior counselors.
+          </p>
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="tel:+919876543210" class="btn-pro-primary">
+              <i class="fas fa-phone-alt"></i>
+              <span>Call: +91 98765 43210</span>
+            </a>
+            <a href="{% url 'contact' %}" class="btn-pro-outline">
+              <i class="fas fa-envelope"></i>
+              <span>Send An Inquiry</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-brand">
+              <div class="footer-brand-wrapper">
+                <img src="https://ui-avatars.com/api/?name=ZA&size=48&background=ffc107&color=0a0a2e&bold=true&font-size=0.5" alt="Logo" class="footer-logo-img">
+                <span>Zaheer Ansari IT</span>
+              </div>
+              <p class="footer-about">
+                India's premier practical IT academy empowering students and professionals with modern tech stacks, 1-on-1 mentorship, and 100% placement assistance.
+              </p>
+              <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="{% url 'home' %}"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Courses</a></li>
+              <li><a href="{% url 'why_zaheer' %}"><i class="fas fa-chevron-right"></i> Why Zaheer IT</a></li>
+              <li><a href="{% url 'about' %}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+              <li><a href="{% url 'contact' %}"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-title">Top Programs</h5>
+            <ul class="footer-links">
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Full Stack Web Dev</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Data Science & AI</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Cloud & DevOps</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Cybersecurity</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Mobile App Development</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-title">Headquarters</h5>
+            <div class="footer-contact">
+              <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>123 IT Park, Silicon Valley,<br>Bangalore - 560001, India</span></div>
+              <div class="contact-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+919876543210">+91 98765 43210</a></span></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:info@zaheerit.com">info@zaheerit.com</a></span></div>
+              <div class="contact-item"><i class="fas fa-clock"></i><span>Mon-Sat: 9:00 AM - 7:00 PM</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0">&copy; 2026 <span class="fw-bold">Zaheer Ansari IT Training Institute</span>. ISO 9001:2015 Certified. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <ul class="footer-bottom-links">
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a></li>
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Privacy Policy Modal -->
+  <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #0a0a2e; color: #fff;">
+          <h5 class="modal-title" id="privacyModalLabel"><i class="fas fa-shield-alt me-2"></i>Privacy Policy</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+          <h5>1. Information We Collect</h5>
+          <p>We collect personal information that you voluntarily provide when you register, enroll, or contact us.</p>
+          <h5>2. How We Use Your Information</h5>
+          <p>We use the information to process enrollments, communicate updates, and coordinate placement opportunities.</p>
+          <h5>3. Data Security</h5>
+          <p>We implement industry-standard encryption and security measures to protect your personal information.</p>
+          <p class="mt-3"><strong>Last Updated:</strong> January 2026</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #0a0a2e; color: #fff;">
+          <h5 class="modal-title" id="termsModalLabel"><i class="fas fa-file-contract me-2"></i>Terms of Service</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+          <h5>1. Acceptance of Terms</h5>
+          <p>By using our website and services, you agree to these Terms of Service.</p>
+          <h5>2. Enrollment and Code of Conduct</h5>
+          <p>All enrollments are subject to batch availability and adherence to student code of conduct.</p>
+          <h5>3. Intellectual Property</h5>
+          <p>All course materials and lab challenges are intellectual property of Zaheer Ansari IT Training Institute.</p>
+          <p class="mt-3"><strong>Last Updated:</strong> January 2026</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Speed Dial & Back to Top -->
+  <div class="floating-actions-bar">
+    <a href="https://wa.me/919876543210?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20courses%20at%20Zaheer%20Ansari%20IT%20Institute" target="_blank" rel="noopener noreferrer" class="float-action-btn btn-whatsapp-float" title="Chat on WhatsApp" aria-label="WhatsApp Chat">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <button id="backToTopBtn" class="float-action-btn btn-back-top" title="Back to Top" aria-label="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- Core JavaScript Bundles -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/homepage-pro.js' %}"></script>
+</body>
+</html>

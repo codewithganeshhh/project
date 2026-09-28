@@ -1,0 +1,1124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zaheer Ansari IT Training Institute | Premier Tech Education & Placement</title>
+  <meta name="description" content="Zaheer Ansari IT Training Institute is India's leading practical tech academy offering Full Stack Development, AI, Data Science, Cloud DevOps, and Cybersecurity with 100% placement assistance.">
+  <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+  
+  <!-- Bootstrap 5 & Font Awesome 6 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Modern Tech Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Base Style & Professional Homepage Enhancement -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/homepage-pro.css' %}">
+</head>
+<body>
+
+  <!-- ==================== TOP ANNOUNCEMENT BAR ==================== -->
+  <div class="top-notice-bar">
+    <div class="container-fluid px-4">
+      <div class="notice-inner">
+        <div class="notice-left">
+          <span class="live-pulse-badge">
+            <span class="pulse-dot"></span> ADMISSIONS 2026
+          </span>
+          <span class="notice-text">
+            <strong>Admissions Open for Summer/Fall Cohorts!</strong> Limited seats with up to 30% Merit Scholarships & 100% Placement Assistance.
+          </span>
+        </div>
+        <div class="notice-right">
+          <a href="tel:+919876543210" class="notice-link">
+            <i class="fas fa-phone-alt"></i> +91 98765 43210
+          </a>
+          <a href="mailto:info@zaheerit.com" class="notice-link">
+            <i class="fas fa-envelope"></i> info@zaheerit.com
+          </a>
+          <a href="#enrollment-section" class="notice-cta-pill">
+            <i class="fas fa-bolt me-1"></i> Book Free Demo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark main-navbar">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <div class="brand-wrapper">
+          <img src="https://ui-avatars.com/api/?name=ZA&size=48&background=ffc107&color=0a0a2e&bold=true&font-size=0.5" alt="Zaheer Ansari IT" class="brand-logo-img">
+          <div class="brand-text">
+            <span class="brand-name">Zaheer Ansari IT</span>
+            <span class="brand-tagline">TRAINING INSTITUTE</span>
+          </div>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'courses' %}">COURSES</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'why_zaheer' %}">WHY ZAHEER IT</a></li>
+          <li class="nav-item"><a class="nav-link" href="#career-roadmap">ROADMAP</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">ABOUT</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT</a></li>
+          {% if user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'profile' %}">PROFILE</a></li>
+            <li class="nav-item"><a class="nav-link btn-logout" href="{% url 'logout' %}">LOGOUT</a></li>
+          {% else %}
+            <li class="nav-item ms-lg-2"><a class="nav-link btn-login" href="{% url 'login' %}"><i class="fas fa-user-graduate me-1"></i> STUDENT PORTAL</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% if messages %}
+  <div class="container django-messages mt-3">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- ==================== HERO SECTION WITH FLOATING CHIPS ==================== -->
+  <section id="heroSlider" class="hero-slider">
+    <!-- Floating Tech Badges -->
+    <div class="floating-tech-container">
+      <div class="floating-tech-chip chip-react">
+        <i class="fab fa-react"></i> React 19 & Next.js
+      </div>
+      <div class="floating-tech-chip chip-python">
+        <i class="fab fa-python"></i> Python & GenAI
+      </div>
+      <div class="floating-tech-chip chip-aws">
+        <i class="fab fa-aws"></i> AWS Cloud & DevOps
+      </div>
+      <div class="floating-tech-chip chip-cyber">
+        <i class="fas fa-shield-halved"></i> Ethical Hacking
+      </div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide active" data-type="image" style="background-image: url('{% static 'images/hero1.jpg' %}');">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="hero-pill-badge">
+          <i class="fas fa-award text-warning"></i> ISO 9001:2015 Certified • Premier Tech Institute
+        </span>
+        <h1 class="hero-title">
+          Launch Your <span class="text-gradient-gold">High-Paying</span> Tech Career
+        </h1>
+        <p class="hero-subtitle">
+          Master Full Stack, AI & Data Science, Cloud DevOps & Cybersecurity with 100% hands-on project sprints and guaranteed placement drives.
+        </p>
+        <div class="slide-buttons">
+          <a href="{% url 'courses' %}" class="btn-pro-primary">
+            <span>Explore All Programs</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#enrollment-section" class="btn-pro-outline">
+            <i class="fas fa-laptop-code"></i>
+            <span>Book Free Demo Class</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide" data-type="image" style="background-image: url('{% static 'images/hero2.jpg' %}');">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="hero-pill-badge">
+          <i class="fas fa-microchip text-info"></i> Industry 4.0 Ready Pedagogy
+        </span>
+        <h1 class="hero-title">
+          Learn From <span class="text-gradient-cyan">Silicon Valley</span> Mentors
+        </h1>
+        <p class="hero-subtitle">
+          Skip outdated textbook theories. Build 8+ enterprise-grade microservices and production apps with 1-on-1 personalized code reviews from senior engineers.
+        </p>
+        <div class="slide-buttons">
+          <a href="#why-zaheer" class="btn-pro-primary">
+            <span>The Zaheer Advantage</span>
+            <i class="fas fa-shield-alt"></i>
+          </a>
+          <a href="{% url 'signup' %}" class="btn-pro-outline">
+            <i class="fas fa-user-plus"></i>
+            <span>Join Next Cohort</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide" data-type="image" style="background-image: url('{% static 'images/hero3.jpg' %}');">
+      <div class="slide-overlay"></div>
+      <div class="slide-content">
+        <span class="hero-pill-badge">
+          <i class="fas fa-briefcase text-warning"></i> 250+ Global Hiring Partners
+        </span>
+        <h1 class="hero-title">
+          Guaranteed <span class="text-gradient-gold">Placement</span> Support
+        </h1>
+        <p class="hero-subtitle">
+          From zero coding background to high-paying offers at top MNCs & product startups. Comprehensive resume overhaul & mock technical rounds.
+        </p>
+        <div class="slide-buttons">
+          <a href="{% url 'contact' %}" class="btn-pro-primary">
+            <span>Talk to Career Counselor</span>
+            <i class="fas fa-headset"></i>
+          </a>
+          <a href="{% url 'about' %}" class="btn-pro-outline">
+            <i class="fas fa-building"></i>
+            <span>About Institute</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slider-dots">
+      <span class="dot active" data-slide="0"></span>
+      <span class="dot" data-slide="1"></span>
+      <span class="dot" data-slide="2"></span>
+    </div>
+    <button class="slider-arrow prev" id="prevSlide" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+    <button class="slider-arrow next" id="nextSlide" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+  </section>
+
+  <!-- ==================== DOCKED METRICS TRUST BANNER ==================== -->
+  <section class="hero-metrics-bar">
+    <div class="container">
+      <div class="metrics-grid">
+        <div class="metric-card-box">
+          <div class="metric-icon-circle icon-gold">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <div class="metric-data">
+            <div class="metric-number-wrap">
+              <span class="metric-number" data-target="15000">15000</span>
+              <span class="metric-suffix">+</span>
+            </div>
+            <span class="metric-title">Careers Transformed</span>
+          </div>
+        </div>
+
+        <div class="metric-card-box">
+          <div class="metric-icon-circle icon-blue">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="metric-data">
+            <div class="metric-number-wrap">
+              <span class="metric-number" data-target="96.8">96.8</span>
+              <span class="metric-suffix">%</span>
+            </div>
+            <span class="metric-title">Verified Placement Rate</span>
+          </div>
+        </div>
+
+        <div class="metric-card-box">
+          <div class="metric-icon-circle icon-emerald">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div class="metric-data">
+            <div class="metric-number-wrap">
+              <span class="metric-number" data-target="250">250</span>
+              <span class="metric-suffix">+</span>
+            </div>
+            <span class="metric-title">Hiring Partners</span>
+          </div>
+        </div>
+
+        <div class="metric-card-box">
+          <div class="metric-icon-circle icon-purple">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <div class="metric-data">
+            <div class="metric-number-wrap">
+              <span class="metric-number" data-target="18.5">18.5</span>
+              <span class="metric-suffix">LPA</span>
+            </div>
+            <span class="metric-title">Highest Package Offered</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== HIRING PARTNERS MARQUEE ==================== -->
+  <section class="hiring-partners-strip">
+    <div class="container">
+      <div class="partners-header">
+        <span class="partners-subtitle">Our Graduates Work At Top Global Tech Companies</span>
+      </div>
+    </div>
+    <div class="marquee-container">
+      <div class="marquee-track" id="hiringMarqueeTrack">
+        <div class="partner-logo-pill"><i class="fab fa-google text-danger"></i> Google</div>
+        <div class="partner-logo-pill"><i class="fab fa-amazon text-warning"></i> Amazon AWS</div>
+        <div class="partner-logo-pill"><i class="fab fa-microsoft text-primary"></i> Microsoft</div>
+        <div class="partner-logo-pill"><i class="fas fa-building text-info"></i> TCS</div>
+        <div class="partner-logo-pill"><i class="fas fa-laptop-code text-primary"></i> Infosys</div>
+        <div class="partner-logo-pill"><i class="fas fa-server text-success"></i> Wipro</div>
+        <div class="partner-logo-pill"><i class="fas fa-network-wired text-purple"></i> Accenture</div>
+        <div class="partner-logo-pill"><i class="fas fa-shield-alt text-dark"></i> Cognizant</div>
+        <div class="partner-logo-pill"><i class="fas fa-cloud text-info"></i> IBM Cloud</div>
+        <div class="partner-logo-pill"><i class="fas fa-code-branch text-danger"></i> Capgemini</div>
+        <div class="partner-logo-pill"><i class="fas fa-microchip text-warning"></i> Tech Mahindra</div>
+        <div class="partner-logo-pill"><i class="fas fa-cubes text-success"></i> Zoho</div>
+        <div class="partner-logo-pill"><i class="fas fa-shopping-bag text-primary"></i> Flipkart</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DEDICATED: WHY CHOOSE ZAHEER ANSARI IT ==================== -->
+  <section id="why-zaheer" class="why-zaheer-section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag-badge">
+          <i class="fas fa-star text-warning"></i> The Zaheer Advantage
+        </span>
+        <h2 class="section-main-heading">
+          Why 15,000+ Aspirants Choose <span class="highlight-gold">Zaheer Ansari IT</span>
+        </h2>
+        <p class="section-main-subtext">
+          Conventional bootcamps teach syntax and theory. We engineer high-performing software professionals ready for day-one production delivery through practical sprints, 1-on-1 mentorship, and dedicated recruitment drives.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <!-- Pillar 1 -->
+        <div class="why-pro-card">
+          <div class="why-card-top">
+            <div class="why-icon-bubble">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <span class="why-badge-stat">100% Support</span>
+          </div>
+          <h3 class="why-card-title">100% Placement Assistance & Dedicated Cell</h3>
+          <p class="why-card-desc">
+            Direct access to 250+ top hiring partners across Bangalore, Hyderabad, and Pune. We support you with unlimited interviews until you secure your dream offer letter.
+          </p>
+          <ul class="why-card-bullets">
+            <li><i class="fas fa-check-circle"></i> On-campus & virtual hiring drives</li>
+            <li><i class="fas fa-check-circle"></i> Rigorous mock technical & HR interviews</li>
+            <li><i class="fas fa-check-circle"></i> ATS-optimized resume & LinkedIn branding</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="why-pro-card">
+          <div class="why-card-top">
+            <div class="why-icon-bubble">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <span class="why-badge-stat">10+ Yrs Exp</span>
+          </div>
+          <h3 class="why-card-title">Mentorship by Silicon Valley & Tier-1 Leads</h3>
+          <p class="why-card-desc">
+            Learn directly from working Principal Engineers, Tech Leads, and Cloud Architects. Gain insights into real-world architectures, microservices, and design patterns.
+          </p>
+          <ul class="why-card-bullets">
+            <li><i class="fas fa-check-circle"></i> 1-on-1 personal code reviews & guidance</li>
+            <li><i class="fas fa-check-circle"></i> Daily doubt-resolution lab hours</li>
+            <li><i class="fas fa-check-circle"></i> Clean code & scalable design standards</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="why-pro-card">
+          <div class="why-card-top">
+            <div class="why-icon-bubble">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <span class="why-badge-stat">8+ Capstones</span>
+          </div>
+          <h3 class="why-card-title">100% Practical & Real-World Capstones</h3>
+          <p class="why-card-desc">
+            No toy examples or slide presentations. Write production code, deploy containerized microservices to cloud providers, and build an enviable public GitHub portfolio.
+          </p>
+          <ul class="why-card-bullets">
+            <li><i class="fas fa-check-circle"></i> Enterprise full-stack & cloud projects</li>
+            <li><i class="fas fa-check-circle"></i> Agile Scrum, Git PR reviews, & CI/CD pipelines</li>
+            <li><i class="fas fa-check-circle"></i> Production debugging & monitoring drills</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="why-pro-card">
+          <div class="why-card-top">
+            <div class="why-icon-bubble">
+              <i class="fas fa-server"></i>
+            </div>
+            <span class="why-badge-stat">Hi-Tech Labs</span>
+          </div>
+          <h3 class="why-card-title">State-of-the-Art Labs & Cloud Sandboxes</h3>
+          <p class="why-card-desc">
+            Experience world-class learning infrastructure with high-performance workstations, gigabit fiber connections, and complimentary sandbox credits on AWS and GCP.
+          </p>
+          <ul class="why-card-bullets">
+            <li><i class="fas fa-check-circle"></i> Air-conditioned modern coding labs</li>
+            <li><i class="fas fa-check-circle"></i> Free cloud sandbox credits for deployments</li>
+            <li><i class="fas fa-check-circle"></i> Hybrid flexibility: attend in-lab or live online</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="why-pro-card">
+          <div class="why-card-top">
+            <div class="why-icon-bubble">
+              <i class="fas fa-code-merge"></i>
+            </div>
+            <span class="why-badge-stat">2026 Tech Stack</span>
+          </div>
+          <h3 class="why-card-title">Industry-Aligned & Frequently Updated Syllabus</h3>
+          <p class="why-card-desc">
+            Our curriculum is re-engineered every 6 months alongside top tech recruiters to match current market hiring trends, including AI tooling, Docker, and System Design.
+          </p>
+          <ul class="why-card-bullets">
+            <li><i class="fas fa-check-circle"></i> Generative AI tools (Copilot & LLMs for Devs)</li>
+            <li><i class="fas fa-check-circle"></i> DSA & LeetCode problem solving masterclasses</li>
+            <li><i class="fas fa-check-circle"></i> High-level & low-level system design</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 6 -->
+        <div class="why-pro-card">
+          <div class="why-card-top">
+            <div class="why-icon-bubble">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <span class="why-badge-stat">ISO 9001:2015</span>
+          </div>
+          <h3 class="why-card-title">Global Certification & Lifetime Learning LMS</h3>
+          <p class="why-card-desc">
+            Graduate with an ISO-certified credential with QR-code verification for your LinkedIn. Receive lifetime access to our LMS recorded lectures, interview banks, and alumni network.
+          </p>
+          <ul class="why-card-bullets">
+            <li><i class="fas fa-check-circle"></i> Globally verifiable digital certificate</li>
+            <li><i class="fas fa-check-circle"></i> Lifetime access to LMS & updated recordings</li>
+            <li><i class="fas fa-check-circle"></i> Exclusive alumni peer group & referral network</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMPARISON SECTION ==================== -->
+  <section class="comparison-section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag-badge bg-primary-subtle text-primary border-primary">
+          <i class="fas fa-balance-scale"></i> Clear Comparison
+        </span>
+        <h2 class="welcome-title text-dark">
+          Zaheer Ansari IT vs <span class="highlight">Traditional Colleges & Bootcamps</span>
+        </h2>
+        <p class="welcome-text">
+          See why ambitious learners choose our outcome-first training rather than outdated theoretical degree courses or passive pre-recorded video sites.
+        </p>
+      </div>
+
+      <div class="comparison-table-wrapper">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th class="col-feature">Key Parameter</th>
+              <th class="col-zaheer"><i class="fas fa-trophy me-2 text-warning"></i> Zaheer Ansari IT Institute</th>
+              <th class="col-traditional">Traditional Colleges & Generic Bootcamps</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-feature"><i class="fas fa-laptop-code me-2 text-primary"></i> Practical Coding Time</td>
+              <td class="col-zaheer"><i class="fas fa-check-circle comp-check"></i> 80% Live Coding & Production Deployments</td>
+              <td class="col-traditional"><i class="fas fa-times-circle comp-cross"></i> 20% Theory & PPT lectures</td>
+            </tr>
+            <tr>
+              <td class="col-feature"><i class="fas fa-user-tie me-2 text-primary"></i> Trainers & Mentors</td>
+              <td class="col-zaheer"><i class="fas fa-check-circle comp-check"></i> Working Senior Tech Leads (10+ Yrs Exp)</td>
+              <td class="col-traditional"><i class="fas fa-times-circle comp-cross"></i> Academic lecturers with no corporate experience</td>
+            </tr>
+            <tr>
+              <td class="col-feature"><i class="fas fa-handshake me-2 text-primary"></i> Placement Support</td>
+              <td class="col-zaheer"><i class="fas fa-check-circle comp-check"></i> 100% Placement Drives until placed (250+ Partners)</td>
+              <td class="col-traditional"><i class="fas fa-times-circle comp-cross"></i> Generic job board links or zero assistance</td>
+            </tr>
+            <tr>
+              <td class="col-feature"><i class="fas fa-code-branch me-2 text-primary"></i> Portfolio & Projects</td>
+              <td class="col-zaheer"><i class="fas fa-check-circle comp-check"></i> 8+ Production-grade microservices on GitHub</td>
+              <td class="col-traditional"><i class="fas fa-times-circle comp-cross"></i> Copy-pasted calculator / To-Do apps</td>
+            </tr>
+            <tr>
+              <td class="col-feature"><i class="fas fa-users me-2 text-primary"></i> Batch Size & Attention</td>
+              <td class="col-zaheer"><i class="fas fa-check-circle comp-check"></i> Focused Cohorts (25-30 students) with 1:1 reviews</td>
+              <td class="col-traditional"><i class="fas fa-times-circle comp-cross"></i> 100+ students crowded in one room</td>
+            </tr>
+            <tr>
+              <td class="col-feature"><i class="fas fa-book me-2 text-primary"></i> Curriculum Relevance</td>
+              <td class="col-zaheer"><i class="fas fa-check-circle comp-check"></i> Updated every 6 months with 2026 tech stacks</td>
+              <td class="col-traditional"><i class="fas fa-times-circle comp-cross"></i> Outdated syllabi from a decade ago</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 4-STEP CAREER ROADMAP ==================== -->
+  <section id="career-roadmap" class="roadmap-section">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-tag-badge bg-warning-subtle text-warning border-warning">
+          <i class="fas fa-route"></i> Career Transformation Path
+        </span>
+        <h2 class="welcome-title text-dark">
+          Our Proven <span class="highlight">4-Step Career Launchpad</span>
+        </h2>
+        <p class="welcome-text">
+          A battle-tested blueprint that has transformed beginners, non-IT graduates, and career gap candidates into top-tier tech professionals.
+        </p>
+      </div>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-card">
+          <span class="roadmap-step-pill">Phase 01</span>
+          <div class="roadmap-icon">
+            <i class="fas fa-cubes"></i>
+          </div>
+          <h4 class="roadmap-title">Foundation & Logic</h4>
+          <p class="roadmap-desc">
+            Build bulletproof fundamentals in data structures, algorithms, syntax, Git version control, and clean software architecture.
+          </p>
+        </div>
+
+        <div class="roadmap-card">
+          <span class="roadmap-step-pill">Phase 02</span>
+          <div class="roadmap-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h4 class="roadmap-title">Enterprise Capstones</h4>
+          <p class="roadmap-desc">
+            Work in simulated Scrum sprints. Build full-stack apps with secure authentication, REST APIs, cloud databases, and Docker containers.
+          </p>
+        </div>
+
+        <div class="roadmap-card">
+          <span class="roadmap-step-pill">Phase 03</span>
+          <div class="roadmap-icon">
+            <i class="fas fa-user-check"></i>
+          </div>
+          <h4 class="roadmap-title">Interview Grooming</h4>
+          <p class="roadmap-desc">
+            Rigorous mock technical interviews, LeetCode problem solving drills, behavioral HR preparation, and GitHub/LinkedIn profiling.
+          </p>
+        </div>
+
+        <div class="roadmap-card">
+          <span class="roadmap-step-pill">Phase 04</span>
+          <div class="roadmap-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h4 class="roadmap-title">Campus Drives & Offers</h4>
+          <p class="roadmap-desc">
+            Exclusive recruitment drives with our 250+ hiring network. Continuous salary negotiation support until you accept your ideal offer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COURSE CATEGORIES ==================== -->
+  <section class="category-section py-5 bg-light">
+    <div class="container">
+      <div class="section-header text-center mb-4">
+        <span class="section-badge">High-Demand Domains</span>
+        <h2 class="section-title">Explore Our <span class="highlight">Course Categories</span></h2>
+        <p class="section-subtitle">Comprehensive, career-oriented IT programs designed to meet current market demands.</p>
+      </div>
+      <div class="category-slider-wrapper">
+        <button class="category-arrow prev-cat" id="prevCategory" aria-label="Previous Category"><i class="fas fa-chevron-left"></i></button>
+        <div class="category-slider" id="categorySlider">
+          <div class="category-slider-track" id="categoryTrack">
+            <div class="category-card-pro">
+              <div class="category-icon"><i class="fas fa-code"></i></div>
+              <h5>Full Stack Web Dev</h5>
+              <p>HTML5, CSS3, React, Node.js, Express, MongoDB & PostgreSQL</p>
+              <span class="course-count"><i class="fas fa-clock me-1"></i> 6 Months • 12 Modules</span>
+              <a href="{% url 'courses' %}" class="category-link">Explore Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="category-card-pro">
+              <div class="category-icon"><i class="fas fa-brain"></i></div>
+              <h5>Data Science & AI</h5>
+              <p>Python, NumPy, Pandas, Scikit-Learn, Deep Learning & GenAI</p>
+              <span class="course-count"><i class="fas fa-clock me-1"></i> 6 Months • 8 Modules</span>
+              <a href="{% url 'courses' %}" class="category-link">Explore Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="category-card-pro">
+              <div class="category-icon"><i class="fas fa-cloud"></i></div>
+              <h5>Cloud & DevOps</h5>
+              <p>AWS Cloud, Docker, Kubernetes, Terraform, CI/CD & Linux</p>
+              <span class="course-count"><i class="fas fa-clock me-1"></i> 4 Months • 6 Modules</span>
+              <a href="{% url 'courses' %}" class="category-link">Explore Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="category-card-pro">
+              <div class="category-icon"><i class="fas fa-shield-alt"></i></div>
+              <h5>Cybersecurity</h5>
+              <p>Network Security, Ethical Hacking, SOC, Penetration Testing</p>
+              <span class="course-count"><i class="fas fa-clock me-1"></i> 5 Months • 7 Modules</span>
+              <a href="{% url 'courses' %}" class="category-link">Explore Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="category-card-pro">
+              <div class="category-icon"><i class="fas fa-mobile-alt"></i></div>
+              <h5>Mobile App Dev</h5>
+              <p>React Native, Flutter, Dart, iOS & Android Deployment</p>
+              <span class="course-count"><i class="fas fa-clock me-1"></i> 4 Months • 6 Modules</span>
+              <a href="{% url 'courses' %}" class="category-link">Explore Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="category-card-pro">
+              <div class="category-icon"><i class="fas fa-chart-line"></i></div>
+              <h5>Digital Marketing</h5>
+              <p>Advanced SEO, SEM, Performance Marketing, Social Media & Analytics</p>
+              <span class="course-count"><i class="fas fa-clock me-1"></i> 3 Months • 5 Modules</span>
+              <a href="{% url 'courses' %}" class="category-link">Explore Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="category-card-pro">
+              <div class="category-icon"><i class="fas fa-robot"></i></div>
+              <h5>Artificial Intelligence</h5>
+              <p>Neural Networks, NLP, Computer Vision, LLMs & LangChain</p>
+              <span class="course-count"><i class="fas fa-clock me-1"></i> 6 Months • 8 Modules</span>
+              <a href="{% url 'courses' %}" class="category-link">Explore Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="category-card-pro">
+              <div class="category-icon"><i class="fas fa-gamepad"></i></div>
+              <h5>Game Development</h5>
+              <p>Unity Engine, C#, Unreal Engine 5, 3D Assets & Physics</p>
+              <span class="course-count"><i class="fas fa-clock me-1"></i> 5 Months • 6 Modules</span>
+              <a href="{% url 'courses' %}" class="category-link">Explore Program <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <button class="category-arrow next-cat" id="nextCategory" aria-label="Next Category"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOUNDER SPOTLIGHT ==================== -->
+  <section class="founder-spotlight-section">
+    <div class="container">
+      <div class="founder-box">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-8">
+            <div class="founder-quote-mark">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="founder-quote-text">
+              "Our mission at Zaheer Ansari IT Training Institute is simple and uncompromising: bridging the massive gap between academic degrees and actual tech industry expectations. We ensure every single student receives personal mentorship, builds real production software, and enters the workforce with true confidence."
+            </p>
+            <div class="founder-profile">
+              <img src="https://ui-avatars.com/api/?name=Zaheer+Ansari&size=100&background=ffc107&color=0a0a2e&bold=true&font-size=0.4" alt="Founder Zaheer Ansari" class="founder-avatar-img">
+              <div class="founder-meta">
+                <h5>Zaheer Ansari</h5>
+                <span>Founder & Managing Director</span>
+                <div class="founder-credentials-pills">
+                  <span class="cred-pill"><i class="fas fa-award text-warning me-1"></i> 15+ Yrs Industry Leadership</span>
+                  <span class="cred-pill"><i class="fas fa-user-graduate text-info me-1"></i> 15,000+ Mentees</span>
+                  <span class="cred-pill"><i class="fas fa-check-circle text-success me-1"></i> ISO 9001 Certified Mentor</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 text-center">
+            <div class="p-4 rounded-4" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+              <i class="fas fa-phone-volume fa-3x text-warning mb-3"></i>
+              <h5 class="text-white mb-2">Speak Directly with Admissions</h5>
+              <p class="text-white-50 small mb-3">Get tailored advice on the best track for your career background.</p>
+              <a href="tel:+919876543210" class="btn btn-warning fw-bold w-100 py-2">
+                <i class="fas fa-phone-alt me-2"></i> +91 98765 43210
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INSTITUTE GALLERY ==================== -->
+  <section id="gallery-section" class="gallery-section py-5">
+    <div class="container">
+      <div class="section-header text-center mb-4">
+        <span class="section-badge">Campus & Culture</span>
+        <h2 class="section-title">Institute <span class="highlight">Gallery</span></h2>
+        <p class="section-subtitle">Take a glimpse into our modern coding labs, collaborative classrooms, and memorable graduation celebrations.</p>
+      </div>
+      <div class="gallery-slider-wrapper">
+        <button class="gallery-arrow prev-gal" id="prevGallery" aria-label="Previous Gallery Image"><i class="fas fa-chevron-left"></i></button>
+        <div class="gallery-slider" id="gallerySlider">
+          <div class="gallery-slider-track" id="galleryTrack">
+            <div class="gallery-item" onclick="openFullscreen(this)">
+              <img src="{% static 'images/gallery1.jpg' %}" alt="Students Coding in Lab">
+              <div class="gallery-overlay"><div class="gallery-content"><i class="fas fa-expand"></i><h5>Practical Coding Lab</h5><p>Click to view fullscreen</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openFullscreen(this)">
+              <img src="{% static 'images/gallery2.png' %}" alt="Modern Classroom Session">
+              <div class="gallery-overlay"><div class="gallery-content"><i class="fas fa-expand"></i><h5>Interactive Smart Classroom</h5><p>Click to view fullscreen</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openFullscreen(this)">
+              <img src="{% static 'images/gallery3.jpg' %}" alt="Graduation Ceremony">
+              <div class="gallery-overlay"><div class="gallery-content"><i class="fas fa-expand"></i><h5>Graduation Ceremony</h5><p>Click to view fullscreen</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openFullscreen(this)">
+              <img src="{% static 'images/gallery4.jpg' %}" alt="Campus Discussion">
+              <div class="gallery-overlay"><div class="gallery-content"><i class="fas fa-expand"></i><h5>Campus Collaboration</h5><p>Click to view fullscreen</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openFullscreen(this)">
+              <img src="{% static 'images/gallery5.jpg' %}" alt="Student Peer Group">
+              <div class="gallery-overlay"><div class="gallery-content"><i class="fas fa-expand"></i><h5>Hackathon Project Sprints</h5><p>Click to view fullscreen</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openFullscreen(this)">
+              <img src="{% static 'images/gallery6.jpg' %}" alt="Placement Day Celebration">
+              <div class="gallery-overlay"><div class="gallery-content"><i class="fas fa-expand"></i><h5>Placement Day Celebration</h5><p>Click to view fullscreen</p></div></div>
+            </div>
+          </div>
+        </div>
+        <button class="gallery-arrow next-gal" id="nextGallery" aria-label="Next Gallery Image"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="gallery-dots" id="galleryDots"></div>
+    </div>
+  </section>
+
+  <!-- Fullscreen Modal for Gallery -->
+  <div id="fullscreenModal" class="fullscreen-modal" onclick="closeFullscreen()">
+    <span class="fullscreen-close">&times;</span>
+    <img class="fullscreen-content" id="fullscreenImg" alt="Expanded Gallery Preview">
+  </div>
+
+  <!-- ==================== ENROLLMENT SECTION ==================== -->
+  <section id="enrollment-section" class="enrollment-section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-11">
+          <div class="enrollment-wrapper">
+            <div class="row g-0">
+              <div class="col-lg-5 enrollment-info">
+                <div class="enrollment-info-content">
+                  <span class="enrollment-badge"><i class="fas fa-rocket me-1"></i> Fast-Track Enrollment</span>
+                  <h2>Start Your <span>Tech Career</span> Today</h2>
+                  <p>Book a free 1-on-1 career consultation, campus demo tour, and syllabus roadmap with our technical counselors.</p>
+                  
+                  <div class="enrollment-features">
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> 100% Placement assistance with top MNCs</div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> 1-on-1 Mentorship from Senior Tech Leads</div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> 8+ Real-world production projects</div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> Flexible weekday & weekend batch schedules</div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> Globally recognized ISO 9001 certification</div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i> Easy 0% EMI monthly fee payment options</div>
+                  </div>
+
+                  <div class="enrollment-stats mt-4">
+                    <div class="stat-item"><span class="stat-number">15K+</span><span class="stat-label">Graduates</span></div>
+                    <div class="stat-item"><span class="stat-number">96.8%</span><span class="stat-label">Placement</span></div>
+                    <div class="stat-item"><span class="stat-number">4.9/5</span><span class="stat-label">Rating</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-7 enrollment-form-wrapper">
+                <div class="enrollment-form-content">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="mb-0"><i class="fas fa-pen-fancy text-warning me-2"></i>Quick Application Form</h4>
+                    <span class="badge bg-warning text-dark px-3 py-2 fw-bold">Summer Batch 2026</span>
+                  </div>
+                  <form id="enrollmentForm" method="post" action="{% url 'enroll_index' %}" data-url="{% url 'enroll_index' %}">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <i class="fas fa-user form-icon"></i>
+                          <input type="text" name="name" class="form-control form-control-lg" id="enrollName" placeholder="Your Full Name" value="{{ user.first_name|default:'' }}" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <i class="fas fa-envelope form-icon"></i>
+                          <input type="email" name="email" class="form-control form-control-lg" id="enrollEmail" placeholder="Email Address" value="{{ user.email|default:'' }}" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <i class="fas fa-phone form-icon"></i>
+                          <input type="tel" name="phone" class="form-control form-control-lg" id="enrollPhone" placeholder="Mobile Number (+91)" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <i class="fas fa-graduation-cap form-icon"></i>
+                          <select name="course" class="form-select form-select-lg" id="enrollCourse" required>
+                            <option value="">Select Interested Course</option>
+                            <option>Full Stack Web Development</option>
+                            <option>Data Science & AI</option>
+                            <option>Cloud & DevOps</option>
+                            <option>Cybersecurity</option>
+                            <option>Mobile App Development</option>
+                            <option>Artificial Intelligence</option>
+                            <option>Digital Marketing</option>
+                            <option>Game Development</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <div class="form-group">
+                          <i class="fas fa-comment form-icon"></i>
+                          <textarea name="message" class="form-control" id="enrollMessage" rows="2" placeholder="Tell us about your background or preferred batch timing (Weekend/Weekday)..."></textarea>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-enroll btn-lg w-100">
+                          <i class="fas fa-paper-plane me-2"></i> Submit & Schedule Demo Class
+                          <span class="btn-shimmer"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS SECTION ==================== -->
+  <section class="testimonial-section py-5">
+    <div class="container">
+      <div class="section-header text-center mb-5">
+        <span class="section-badge"><i class="fas fa-quote-left"></i> Verified Alumni Stories</span>
+        <h2 class="section-title">What Our <span class="highlight">Graduates Say</span></h2>
+        <p class="section-subtitle">Real feedback from students who transformed their careers with Zaheer Ansari IT Training Institute.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card testimonial-black">
+            <div class="testimonial-rating">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+              <p>"I came from a mechanical engineering background with zero coding knowledge. The mentors at Zaheer Institute simplified everything. Within 45 days of completing Full Stack, I got placed at TechCorp with a 7 LPA package!"</p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://ui-avatars.com/api/?name=Rahul+Kumar&size=60&background=ffc107&color=0a0a2e&bold=true" alt="Rahul Kumar" class="author-img">
+              <div class="author-info">
+                <h6>Rahul Kumar</h6>
+                <span><i class="fas fa-briefcase text-warning me-1"></i> Software Engineer at TechCorp</span>
+                <div class="author-verified"><i class="fas fa-check-circle text-success me-1"></i> Verified Student</div>
+              </div>
+            </div>
+            <div class="testimonial-date"><i class="far fa-calendar-alt me-1"></i> Batch 2025</div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card testimonial-black">
+            <div class="testimonial-rating">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+              <p>"The Data Science & AI curriculum is top tier. We didn't just watch videos—we trained real ML models and built end-to-end pipelines. The placement team arranged 5 interviews in 2 weeks. Highly recommended!"</p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://ui-avatars.com/api/?name=Priya+Sharma&size=60&background=ffc107&color=0a0a2e&bold=true" alt="Priya Sharma" class="author-img">
+              <div class="author-info">
+                <h6>Priya Sharma</h6>
+                <span><i class="fas fa-briefcase text-warning me-1"></i> Data Analyst at DataViz Systems</span>
+                <div class="author-verified"><i class="fas fa-check-circle text-success me-1"></i> Verified Student</div>
+              </div>
+            </div>
+            <div class="testimonial-date"><i class="far fa-calendar-alt me-1"></i> Batch 2025</div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card testimonial-black">
+            <div class="testimonial-rating">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+            <div class="testimonial-quote">
+              <i class="fas fa-quote-left"></i>
+              <p>"Cloud & DevOps training with AWS, Docker, and Kubernetes was the best decision of my life. The hands-on lab sandbox practice gave me immense confidence to tackle tough technical rounds."</p>
+            </div>
+            <div class="testimonial-author">
+              <img src="https://ui-avatars.com/api/?name=Amit+Patel&size=60&background=ffc107&color=0a0a2e&bold=true" alt="Amit Patel" class="author-img">
+              <div class="author-info">
+                <h6>Amit Patel</h6>
+                <span><i class="fas fa-briefcase text-warning me-1"></i> Cloud DevOps Engineer at CloudNova</span>
+                <div class="author-verified"><i class="fas fa-check-circle text-success me-1"></i> Verified Student</div>
+              </div>
+            </div>
+            <div class="testimonial-date"><i class="far fa-calendar-alt me-1"></i> Batch 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ACCORDION SECTION ==================== -->
+  <section class="faq-pro-section">
+    <div class="container">
+      <div class="text-center mb-5">
+        <span class="section-tag-badge bg-info-subtle text-info border-info">
+          <i class="fas fa-circle-question"></i> Have Questions?
+        </span>
+        <h2 class="welcome-title text-dark">
+          Frequently Asked <span class="highlight">Questions</span>
+        </h2>
+        <p class="welcome-text">
+          Everything you need to know about joining Zaheer Ansari IT Training Institute, curriculum, and placement process.
+        </p>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <!-- FAQ 1 -->
+          <div class="faq-card-item">
+            <button class="faq-question-btn" type="button">
+              <span>Do I need prior coding experience or an IT degree to join?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer-panel">
+              <p class="faq-answer-text">
+                Not at all! Over 45% of our successful alumni come from non-IT backgrounds (Mechanical, Civil, Commerce, B.Sc, and Arts). Our programs start from zero-level logic building and programming fundamentals before advancing to enterprise production concepts.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-card-item">
+            <button class="faq-question-btn" type="button">
+              <span>How does the 100% Placement Assistance work?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer-panel">
+              <p class="faq-answer-text">
+                Our dedicated Placement Cell works with 250+ top MNCs and high-growth product companies. We conduct multiple rounds of mock technical interviews, LeetCode coding assessments, and ATS resume overhauls. We keep scheduling interviews for you until you successfully accept an offer.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-card-item">
+            <button class="faq-question-btn" type="button">
+              <span>Are classes available in hybrid/online and weekend formats?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer-panel">
+              <p class="faq-answer-text">
+                Yes! We offer both offline classroom sessions at our hi-tech Bangalore campus and interactive live online classes. We also run dedicated Weekend Batches specifically tailored for working professionals.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-card-item">
+            <button class="faq-question-btn" type="button">
+              <span>What happens if I miss a live lecture?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer-panel">
+              <p class="faq-answer-text">
+                Every live class is recorded in HD and uploaded to your personal student portal within 2 hours. You enjoy lifetime access to all recordings, code repositories, assignments, and interview solution manuals.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-card-item">
+            <button class="faq-question-btn" type="button">
+              <span>Are installment / EMI payment options available?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer-panel">
+              <p class="faq-answer-text">
+                Yes, we offer flexible 0% interest EMI installment options, as well as merit scholarships for top performers in our entrance assessment test.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-card-item">
+            <button class="faq-question-btn" type="button">
+              <span>Will I receive an industry-recognized certificate?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer-panel">
+              <p class="faq-answer-text">
+                Yes, on successful completion of your capstone projects and assessments, you will receive an accredited ISO 9001:2015 certificate from Zaheer Ansari IT Training Institute with a unique QR code for LinkedIn validation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="footer-brand">
+              <div class="footer-brand-wrapper">
+                <img src="https://ui-avatars.com/api/?name=ZA&size=48&background=ffc107&color=0a0a2e&bold=true&font-size=0.5" alt="Logo" class="footer-logo-img">
+                <span>Zaheer Ansari IT</span>
+              </div>
+              <p class="footer-about">
+                India's premier practical IT academy empowering students and professionals with modern tech stacks, 1-on-1 mentorship, and 100% placement assistance.
+              </p>
+              <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5 class="footer-title">Quick Links</h5>
+            <ul class="footer-links">
+              <li><a href="{% url 'home' %}"><i class="fas fa-chevron-right"></i> Home</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Courses</a></li>
+              <li><a href="{% url 'why_zaheer' %}"><i class="fas fa-chevron-right"></i> Why Zaheer IT</a></li>
+              <li><a href="{% url 'about' %}"><i class="fas fa-chevron-right"></i> About Us</a></li>
+              <li><a href="{% url 'contact' %}"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-title">Top Programs</h5>
+            <ul class="footer-links">
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Full Stack Web Dev</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Data Science & AI</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Cloud & DevOps</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Cybersecurity</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Mobile App Development</a></li>
+              <li><a href="{% url 'courses' %}"><i class="fas fa-chevron-right"></i> Digital Marketing</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h5 class="footer-title">Headquarters</h5>
+            <div class="footer-contact">
+              <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span>123 IT Park, Silicon Valley,<br>Bangalore - 560001, India</span></div>
+              <div class="contact-item"><i class="fas fa-phone-alt"></i><span><a href="tel:+919876543210">+91 98765 43210</a></span></div>
+              <div class="contact-item"><i class="fas fa-envelope"></i><span><a href="mailto:info@zaheerit.com">info@zaheerit.com</a></span></div>
+              <div class="contact-item"><i class="fas fa-clock"></i><span>Mon-Sat: 9:00 AM - 7:00 PM</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-center text-md-start">
+            <p class="mb-0">&copy; 2026 <span class="fw-bold">Zaheer Ansari IT Training Institute</span>. ISO 9001:2015 Certified. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 text-center text-md-end">
+            <ul class="footer-bottom-links">
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a></li>
+              <li><a href="#" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Privacy Policy Modal -->
+  <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #0a0a2e; color: #fff;">
+          <h5 class="modal-title" id="privacyModalLabel"><i class="fas fa-shield-alt me-2"></i>Privacy Policy</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+          <h5>1. Information We Collect</h5>
+          <p>We collect personal information that you voluntarily provide when you register, enroll, or contact us.</p>
+          <h5>2. How We Use Your Information</h5>
+          <p>We use the information to process enrollments, communicate updates, and coordinate placement opportunities.</p>
+          <h5>3. Data Security</h5>
+          <p>We implement industry-standard encryption and security measures to protect your personal information.</p>
+          <p class="mt-3"><strong>Last Updated:</strong> January 2026</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Terms Modal -->
+  <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background: #0a0a2e; color: #fff;">
+          <h5 class="modal-title" id="termsModalLabel"><i class="fas fa-file-contract me-2"></i>Terms of Service</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="max-height: 500px; overflow-y: auto;">
+          <h5>1. Acceptance of Terms</h5>
+          <p>By using our website and services, you agree to these Terms of Service.</p>
+          <h5>2. Enrollment and Code of Conduct</h5>
+          <p>All enrollments are subject to batch availability and adherence to student code of conduct.</p>
+          <h5>3. Intellectual Property</h5>
+          <p>All course materials and lab challenges are intellectual property of Zaheer Ansari IT Training Institute.</p>
+          <p class="mt-3"><strong>Last Updated:</strong> January 2026</p>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FLOATING SPEED DIAL & BACK TO TOP ==================== -->
+  <div class="floating-actions-bar">
+    <a href="https://wa.me/919876543210?text=Hi%2C%20I%20would%20like%20to%20know%20more%20about%20courses%20at%20Zaheer%20Ansari%20IT%20Institute" target="_blank" rel="noopener noreferrer" class="float-action-btn btn-whatsapp-float" title="Chat on WhatsApp" aria-label="WhatsApp Chat">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <button id="backToTopBtn" class="float-action-btn btn-back-top" title="Back to Top" aria-label="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+
+  <!-- Core JavaScript Bundles -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/homepage-pro.js' %}"></script>
+</body>
+</html>
