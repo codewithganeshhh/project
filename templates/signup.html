@@ -96,91 +96,94 @@
   <section class="auth-section">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-xl-10 col-lg-11">
           <div class="auth-wrapper">
-            <div class="row g-0">
-              <div class="col-lg-5">
-                <div class="auth-info">
-                  <span class="auth-badge"><i class="fas fa-user-plus"></i> New Enrollment</span>
-                  <h2>Create Your <span>Free Account</span></h2>
-                  <p>Join 15,000+ ambitious graduates transforming their careers with India's premier practical tech academy.</p>
+            <div class="row g-0 align-items-stretch">
+              <div class="col-lg-5 d-flex">
+                <div class="auth-info flex-grow-1">
+                  <div class="auth-info-content">
+                    <span class="auth-badge"><i class="fas fa-user-plus"></i> New Enrollment</span>
+                    <h2>Create Your <span>Free Account</span></h2>
+                    <p>Join 15,000+ ambitious graduates transforming their careers with India's premier practical tech academy.</p>
 
-                  <div class="auth-features">
-                    <div class="auth-feature"><i class="fas fa-check-circle"></i><span>Access Complete Course Modules</span></div>
-                    <div class="auth-feature"><i class="fas fa-check-circle"></i><span>Live Coding Sandbox Practice</span></div>
-                    <div class="auth-feature"><i class="fas fa-check-circle"></i><span>1-on-1 Senior Tech Mentorship</span></div>
-                    <div class="auth-feature"><i class="fas fa-check-circle"></i><span>100% Placement Assistance</span></div>
-                    <div class="auth-feature"><i class="fas fa-check-circle"></i><span>ISO 9001:2015 Verified Credentials</span></div>
-                  </div>
+                    <div class="auth-features">
+                      <div class="auth-feature"><i class="fas fa-check-circle"></i><span>Access Complete Course Modules</span></div>
+                      <div class="auth-feature"><i class="fas fa-check-circle"></i><span>Live Coding Sandbox Practice</span></div>
+                      <div class="auth-feature"><i class="fas fa-check-circle"></i><span>1-on-1 Senior Tech Mentorship</span></div>
+                      <div class="auth-feature"><i class="fas fa-check-circle"></i><span>100% Placement Assistance</span></div>
+                      <div class="auth-feature"><i class="fas fa-check-circle"></i><span>ISO 9001:2015 Verified Credentials</span></div>
+                    </div>
 
-                  <div class="auth-quote">
-                    <i class="fas fa-quote-left"></i>
-                    <p>"The best investment you can make is in yourself and your future-ready tech skills."</p>
-                    <span>— Zaheer Ansari, Founder</span>
+                    <div class="auth-quote">
+                      <i class="fas fa-quote-left"></i>
+                      <p>"The best investment you can make is in yourself and your future-ready tech skills."</p>
+                      <span>— Zaheer Ansari, Founder</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-lg-7">
-                <div class="auth-form-wrapper">
-                  <div class="auth-form-header">
-                    <div class="auth-icon-wrapper"><i class="fas fa-user-plus"></i></div>
-                    <h4>Create Student Profile</h4>
-                    <p>Enter your details to create your portal access</p>
-                  </div>
-
-                  <form id="signupForm" method="post" action="{% url 'signup' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">
-                    {% csrf_token %}
-                    <div class="row g-3">
-                      <div class="col-12">
-                        <div class="form-group">
-                          <i class="fas fa-user form-icon"></i>
-                          <input type="text" name="name" class="form-control form-control-lg" id="signupName" placeholder="Full Name" value="{{ form.name.value|default:'' }}" required autocomplete="name">
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="form-group">
-                          <i class="fas fa-envelope form-icon"></i>
-                          <input type="email" name="email" class="form-control form-control-lg" id="signupEmail" placeholder="Email Address" value="{{ form.email.value|default:'' }}" required autocomplete="email">
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="form-group">
-                          <i class="fas fa-lock form-icon"></i>
-                          <input type="password" name="password1" class="form-control form-control-lg" id="signupPassword" placeholder="Create Password (min 6 characters)" required autocomplete="new-password">
-                          <button type="button" class="password-toggle" onclick="togglePassword('signupPassword', this)" aria-label="Toggle password visibility">
-                            <i class="fas fa-eye"></i>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="form-group">
-                          <i class="fas fa-lock form-icon"></i>
-                          <input type="password" name="password2" class="form-control form-control-lg" id="signupConfirmPassword" placeholder="Confirm Password" required autocomplete="new-password">
-                          <button type="button" class="password-toggle" onclick="togglePassword('signupConfirmPassword', this)" aria-label="Toggle password visibility">
-                            <i class="fas fa-eye"></i>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="agreeTerms" required>
-                          <label class="form-check-label text-muted small" for="agreeTerms">
-                            I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-primary fw-bold">Terms of Service</a> and <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-primary fw-bold">Privacy Policy</a>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-12">
-                        <button type="submit" class="btn btn-enroll btn-lg w-100">
-                          <i class="fas fa-user-plus me-2"></i> Register Student Account
-                          <span class="btn-shimmer"></span>
-                        </button>
-                      </div>
+              <div class="col-lg-7 d-flex">
+                <div class="auth-form-wrapper flex-grow-1">
+                  <div class="auth-form-content">
+                    <div class="auth-form-header">
+                      <div class="auth-icon-wrapper"><i class="fas fa-user-plus"></i></div>
+                      <h4>Create Student Profile</h4>
+                      <p>Enter your details to create your portal access</p>
                     </div>
-                  </form>
 
-                  <div class="auth-footer">
-                    Already have an account? <a href="{% url 'login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">Login Here</a>
+                    <form id="signupForm" method="post" action="{% url 'signup' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">
+                      {% csrf_token %}
+                      <div class="row g-3">
+                        <div class="col-12">
+                          <div class="form-group">
+                            <i class="fas fa-user form-icon"></i>
+                            <input type="text" name="name" class="form-control form-control-lg" id="signupName" placeholder="Full Name" value="{{ form.name.value|default:'' }}" required autocomplete="name">
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="form-group">
+                            <i class="fas fa-envelope form-icon"></i>
+                            <input type="email" name="email" class="form-control form-control-lg" id="signupEmail" placeholder="Email Address" value="{{ form.email.value|default:'' }}" required autocomplete="email">
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="form-group">
+                            <i class="fas fa-lock form-icon"></i>
+                            <input type="password" name="password1" class="form-control form-control-lg" id="signupPassword" placeholder="Create Password (min 6 characters)" required autocomplete="new-password">
+                            <button type="button" class="password-toggle" onclick="togglePassword('signupPassword', this)" aria-label="Toggle password visibility">
+                              <i class="fas fa-eye"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="form-group">
+                            <i class="fas fa-lock form-icon"></i>
+                            <input type="password" name="password2" class="form-control form-control-lg" id="signupConfirmPassword" placeholder="Confirm Password" required autocomplete="new-password">
+                            <button type="button" class="password-toggle" onclick="togglePassword('signupConfirmPassword', this)" aria-label="Toggle password visibility">
+                              <i class="fas fa-eye"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                            <label class="form-check-label text-muted small" for="agreeTerms">
+                              I agree to the <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" class="text-primary fw-bold">Terms of Service</a> and <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="text-primary fw-bold">Privacy Policy</a>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <button type="submit" class="btn btn-auth-submit btn-lg w-100">
+                            <i class="fas fa-user-plus me-2"></i> Register Student Account
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+
+                    <div class="auth-footer">
+                      Already have an account? <a href="{% url 'login' %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}">Login Here</a>
+                    </div>
                   </div>
                 </div>
               </div>
